@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 const invoiceSchema = new mongoose.Schema({
   productName: String,
-  count: Number,
+  description: String,
   price: Number,
+  quantity: Number,
+  amount: Number,
 });
 
 const invoiceModel = mongoose.model("invoiceModel", invoiceSchema);

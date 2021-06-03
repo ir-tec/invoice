@@ -1,7 +1,9 @@
 import React from "react";
 import Popup from "reactjs-popup";
 import "../scss/new-item.scss";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { addNewInvoice } from "../redux/actions";
+import { formValidation, initialValues } from "../validation/validaion";
 function NewItem() {
   return (
     <Popup
@@ -17,52 +19,75 @@ function NewItem() {
       trigger={<span style={{ width: "100%" }}>ADD</span>}
       position="top right"
     >
-      <form
-        className="newItemForm"
-        onSubmit={(e) => {
-          addNewInvoice(e.target.value);
-        }}
-      >
-        <div className="fieldItem">
-          <label htmlFor="productName">Product Name :</label>
-          <input
-            type="text"
-            id="productName"
-            name="productName"
-            placeholder="Product Name..."
-          />
-        </div>
-        <div className="fieldItem">
-          <label htmlFor="Description">Description</label>
-          <input
-            type="text"
-            id="Description"
-            name="Description"
-            placeholder="Description..."
-          />
-        </div>
-        <div className="fieldItem">
-          <label htmlFor="price">Price :</label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            placeholder="Price... "
-          />
-        </div>
-        <div className="fieldItem">
-          <label htmlFor="Quantity">Quantity :</label>
-          <input
-            type="number"
-            name="Quantity"
-            id="Quantity"
-            placeholder="Quantity... "
-          />
-        </div>
-        <div className="submitButton">
-          <button type="submit">Add</button>
-        </div>
-      </form>
+      {
+        <Formik
+          initialValues={initialValues}
+          validationSchema={formValidation}
+          onSubmit={(values) => {
+            addNewInvoice(values);
+          }}
+        >
+          {(formik) => {
+            return (
+              <Form className="newItemForm">
+                <div className="fieldItem">
+                  <label htmlFor="productName">Product Name :</label>
+                  <Field
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    placeholder="Product Name..."
+                  />
+                  <ErrorMessage name="productName" component="p" />
+                </div>
+                <div className="fieldItem">
+                  <label htmlFor="description">Description</label>
+                  <Field
+                    type="text"
+                    id="description"
+                    name="description"
+                    placeholder="Description..."
+                  />
+                  <ErrorMessage name="description" component="p" />
+                </div>
+                <div className="fieldItem">
+                  <label htmlFor="price">Price :</label>
+                  <Field
+                    type="number"
+                    name="price"
+                    id="price"
+                    placeholder="Price... "
+                  />
+                  <ErrorMessage name="price" component="p" />
+                </div>
+                <div className="fieldItem">
+                  <label htmlFor="quantity">Quantity :</label>
+                  <Field
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    placeholder="Quantity... "
+                  />
+                  <ErrorMessage name="quantity" component="p" />
+                </div>
+                <div className="fieldItem">
+                  <label htmlFor="amount">Amount :</label>
+                  <Field
+                    type="number"
+                    name="amount"
+                    id="amount"
+                    placeholder="Amount... "
+                  />
+                  <ErrorMessage name="amount" component="p" />
+                </div>
+                <div className="submitButton">
+                  <button type="submit">Add</button>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      }
     </Popup>
   );
 }

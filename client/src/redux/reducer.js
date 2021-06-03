@@ -1,26 +1,18 @@
 import * as actionTypes from "./actionTypes";
 
 const initialState = [
-  {
-    ProductName: "Product1",
-    Description: "description",
-    Qity: 2,
-    price: 200,
-    Amount: 400,
-  },
+
 ];
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_USER:
+    case actionTypes.ADD_INVOICE:
       return {
         newProduct: action.payload,
       };
-    case actionTypes.ALL_USER:
-      return {
-        productList: action.payload,
-      };
-    case actionTypes.DELETE_USER:
+    case actionTypes.ALL_INVOICES:
+      return [ action.payload ];
+    case actionTypes.DELETE_INVOICE:
       return {
         newList: action.payload,
       };

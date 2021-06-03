@@ -1,3 +1,3 @@
-export const ADD_USER = "ADD_USER";
-export const ALL_USER = "ALL_USER";
-export const DELETE_USER = "DELETE_USER";
+export const ADD_INVOICE = "ADD_USER";
+export const ALL_INVOICES = "ALL_USER";
+export const DELETE_INVOICE = "DELETE_USER";

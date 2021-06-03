@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "../scss/header.scss";
 function Header(props) {
-  const { state } = props;
-  console.log(state);
+  
   return (
     <div className="headerContainer">
       <div className="title">
