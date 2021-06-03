@@ -5,10 +5,10 @@ import { deleteOneInvoice, findAllInvoices } from "../redux/actions";
 import "../scss/items.scss";
 import NewItem from "./NewItem";
 function Items(props) {
-  const { state } = props;
+  const { invoiceReducer } = props.state;
   React.useEffect(() => {
     findAllInvoices();
-  }, [state]);
+  }, [invoiceReducer]);
 
   return (
     <div className="items-container">
@@ -22,9 +22,9 @@ function Items(props) {
         </button>
       </div>
 
-      {state.length === 0
+      {invoiceReducer.length === 0
         ? null
-        : state[0].map((product, index) => {
+        : invoiceReducer[0].map((product, index) => {
             return (
               <div key={index} className="item">
                 <div className="itemTitle">
@@ -36,8 +36,7 @@ function Items(props) {
                 <h2>{product.amount}$</h2>
                 <button
                   onClick={() => {
-                     deleteOneInvoice(product._id);
-                    console.log(product._id);
+                    deleteOneInvoice(product._id);
                   }}
                 >
                   Delete

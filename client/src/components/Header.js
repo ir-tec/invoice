@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import "../scss/header.scss";
 function Header(props) {
-  
+  const { totalPriceReducer } = props.state;
   return (
     <div className="headerContainer">
       <div className="title">
@@ -34,16 +35,55 @@ function Header(props) {
       </div>
       <div className="detailsSection">
         <div className="details">
-          <h2>Number : </h2>
-          <h2>Date : </h2>
+          <h2>
+            Number :{" "}
+            {totalPriceReducer.length === 0
+              ? null
+              : totalPriceReducer[0].quantity}
+          </h2>
+          <h2>
+            Date :{" "}
+            {totalPriceReducer.length === 0
+              ? null
+              : new Date().toLocaleDateString()}{" "}
+          </h2>
           <h2>Terms : </h2>
-          <h2>Due: </h2>
+          <h2>
+            Due:
+            {totalPriceReducer.length === 0
+              ? null
+              : totalPriceReducer[0].quantity}{" "}
+          </h2>
         </div>
         <div className="totalPrice">
-          <h2>subTotal :$</h2>
-          <h2>Tax(5%) :$</h2>
-          <h2>Total :$</h2>
-          <h1>Balance Due :$</h1>
+          <h2>
+            subTotal :{" "}
+            {totalPriceReducer.length === 0
+              ? null
+              : totalPriceReducer[0].priceWithoutTax}
+            $
+          </h2>
+          <h2>
+            Tax(5%) :
+            {totalPriceReducer.length === 0
+              ? null
+              : totalPriceReducer[0].totalTax}
+            $
+          </h2>
+          <h2>
+            Total :
+            {totalPriceReducer.length === 0
+              ? null
+              : totalPriceReducer[0].priceWithTax}
+            $
+          </h2>
+          <h1>
+            Balance Due :
+            {totalPriceReducer.length === 0
+              ? null
+              : totalPriceReducer[0].priceWithTax}
+            $
+          </h1>
         </div>
       </div>
     </div>
