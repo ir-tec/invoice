@@ -9,7 +9,7 @@ function NewItem() {
     <Popup
       contentStyle={{
         backgroundColor: "white",
-        width: "40%",
+        width: "60%",
         height: "fit-content",
         padding: "1%",
         fontSize: "12px",

@@ -2,8 +2,12 @@ const Router = require("express").Router();
 const DataBase = require("../models/invoice");
 
 Router.get("/allInvoices", async (req, res) => {
-  const data = await DataBase.find();
-  res.json(data);
+  try {
+    const data = await DataBase.find();
+    res.json(data);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 Router.post("/newInvoice", async (req, res) => {
@@ -14,9 +18,13 @@ Router.post("/newInvoice", async (req, res) => {
     quantity: req.body.quantity,
     amount: req.body.amount,
   };
-  const newInvoice = new DataBase(reqItem);
-  const newItem = await newInvoice.save();
-  res.json(newItem);
+  try {
+    const newInvoice = new DataBase(reqItem);
+    const newItem = await newInvoice.save();
+    res.json(newItem);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 Router.delete("/deleteInvoices/:id", async (req, res) => {
