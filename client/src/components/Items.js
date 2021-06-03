@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { findAllInvoices } from "../redux/actions";
+import { deleteOneInvoice, findAllInvoices } from "../redux/actions";
 
 import "../scss/items.scss";
 import NewItem from "./NewItem";
@@ -10,7 +10,6 @@ function Items(props) {
     findAllInvoices();
   }, [state]);
 
-  console.log(state);
   return (
     <div className="items-container">
       <div className="items-header">
@@ -35,7 +34,14 @@ function Items(props) {
                 <h2>{product.price}$</h2>
                 <h2>{product.quantity}</h2>
                 <h2>{product.amount}$</h2>
-                <button>Delete</button>
+                <button
+                  onClick={() => {
+                     deleteOneInvoice(product._id);
+                    console.log(product._id);
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             );
           })}
