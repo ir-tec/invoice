@@ -9,7 +9,6 @@ Router.get("/allInvoices", async (req, res) => {
     res.send(err);
   }
 });
-
 Router.post("/newInvoice", async (req, res) => {
   const reqItem = {
     productName: req.body.productName,
